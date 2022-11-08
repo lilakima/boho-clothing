@@ -33,7 +33,7 @@ const Home = () => {
     return (
         <>
             <CategoriesContainer categories={categories} />
-            <Outlet />
+            {/*<Outlet />*/}
         </>
     )
 }
