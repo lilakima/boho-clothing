@@ -1,11 +1,21 @@
 import { Routes, Route } from "react-router-dom"
 import './components/categories-container/categories.style.scss'
 import Home from "./routes/home/Home"
+import Navigation from "./routes/navigation/Navigation"
+
+const Shop = () => {
+    return (
+        <h1>I am the shop page</h1>
+    )
+}
 
 const App = () => {
     return (
         <Routes>
-            <Route path='/' element={ <Home />}></Route>
+            <Route path='/' element={<Navigation />}>
+                <Route index element={<Home />} />
+                <Route path='shop' element={<Shop />} />
+            </Route>
         </Routes>
     )
 }
