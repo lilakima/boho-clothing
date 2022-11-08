@@ -1,6 +1,6 @@
 import React from 'react'
 import CategoryItem from "../category-item/CategoryItem"
-import "./categories.style.scss"
+import "./Categories.style.scss"
 
 const CategoriesContainer = ({ categories }) => {
     return (
