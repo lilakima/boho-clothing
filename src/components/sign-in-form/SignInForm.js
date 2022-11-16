@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import {
     createUserDocumentFromAuth,
     signInAuthUserWithEmailAndPassword,
@@ -7,6 +7,7 @@ import {
 import FormInput from "../form-input/FormInput"
 import "./SignInForm.style.scss"
 import Button from "../button/Button"
+import { UserContext } from "../../contexts/UserContext"
 
 const defaultFormField = {
     email: '',
@@ -17,13 +18,36 @@ const SignInForm = () => {
     const [formField, setFormField] = useState(defaultFormField)
     const { email, password } = formField
 
+    const { setCurrentUser } = useContext(UserContext)
+
+    const resetFormField = () => {
+        setFormField(defaultFormField)
+    }
+
     const signInWithGoogle = async () => {
         const { user } = await signInWithGooglePopup()
         await createUserDocumentFromAuth(user)
     }
 
-    const resetFormField = () => {
-        setFormField(defaultFormField)
+    const handleSubmit = async (event) => {
+        event.preventDefault()
+
+        try {
+            const { user } = await signInAuthUserWithEmailAndPassword(email, password)
+            resetFormField()
+            setCurrentUser(user)
+        } catch (error) {
+            switch (error.code) {
+                case 'auth/wrong-password':
+                    alert('incorrect password for email')
+                    break;
+                case 'auth/user-not-found':
+                    alert('no user associated with this email')
+                    break;
+                default:
+                    console.log(error);
+            }
+        }
     }
 
     const handleOnChange = (event) => {
@@ -33,18 +57,6 @@ const SignInForm = () => {
             ...formField,
             [name]: value
         })
-    }
-
-    const handleSubmit = async (event) => {
-        event.preventDefault()
-
-        try {
-            const response = await signInAuthUserWithEmailAndPassword(email, password)
-            console.log(response)
-            resetFormField()
-        } catch (error) {
-            console.log(error)
-        }
     }
 
     return (
