@@ -3,12 +3,7 @@ import './components/categories-container/Categories.style.scss'
 import Home from "./routes/home/Home"
 import Navigation from "./routes/navigation/Navigation"
 import Authentication from "./routes/authentication/Authentication"
-
-const Shop = () => {
-    return (
-        <h1>I am the shop page</h1>
-    )
-}
+import Shop from "./routes/shop/Shop"
 
 const App = () => {
     return (
