@@ -12,12 +12,13 @@ import {
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAykpwzJyT6uAF-ZV60Gz-QcPiCHKgJqL0",
-    authDomain: "boho-clothing-db.firebaseapp.com",
-    projectId: "boho-clothing-db",
-    storageBucket: "boho-clothing-db.appspot.com",
-    messagingSenderId: "391270818076",
-    appId: "1:391270818076:web:edfecd6c5c5ecec21e5ad9"
+    apiKey: "AIzaSyD8IJo0v2kI5vqtwmfRWW7DUa1YI2A9Y10",
+    authDomain: "boho-clothing-db-2a97b.firebaseapp.com",
+    projectId: "boho-clothing-db-2a97b",
+    storageBucket: "boho-clothing-db-2a97b.appspot.com",
+    messagingSenderId: "1092921260840",
+    appId: "1:1092921260840:web:0fd12188e1836817ceee1d",
+    measurementId: "G-VW29KC0PK2"
 }
 
 const firebaseApp = initializeApp(firebaseConfig)

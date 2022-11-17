@@ -1,6 +1,5 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import {
-    createUserDocumentFromAuth,
     signInAuthUserWithEmailAndPassword,
     signInWithGooglePopup
 } from "../../utils/firebase/firebase.utils"
@@ -29,7 +28,7 @@ const SignInForm = () => {
         event.preventDefault()
 
         try {
-            const { user } = await signInAuthUserWithEmailAndPassword(email, password)
+            await signInAuthUserWithEmailAndPassword(email, password)
             resetFormField()
         } catch (error) {
             switch (error.code) {
@@ -59,13 +58,13 @@ const SignInForm = () => {
             <h2>Already have an account?</h2>
             <span>Sign in with your email and password</span>
             <form onSubmit={handleSubmit}>
-                <FormInput label='email'
+                <FormInput label='Email'
                            type="email"
                            onChange={handleOnChange}
                            name='email'
                            value={email}
                            required />
-                <FormInput label='password'
+                <FormInput label='Password'
                            type="password"
                            onChange={handleOnChange}
                            name='password'
