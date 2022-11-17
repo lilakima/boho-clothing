@@ -44,7 +44,7 @@ const SignInForm = () => {
         }
     }
 
-    const handleOnChange = (event) => {
+    const handleChange = (event) => {
         const { name, value } = event.target
 
         setFormField({
@@ -60,13 +60,13 @@ const SignInForm = () => {
             <form onSubmit={handleSubmit}>
                 <FormInput label='Email'
                            type="email"
-                           onChange={handleOnChange}
+                           onChange={handleChange}
                            name='email'
                            value={email}
                            required />
                 <FormInput label='Password'
                            type="password"
-                           onChange={handleOnChange}
+                           onChange={handleChange}
                            name='password'
                            value={password}
                            required />

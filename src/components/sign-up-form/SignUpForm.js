@@ -19,7 +19,7 @@ const SignUpForm = () => {
         setFormField(defaultFormField)
     }
 
-    const handleOnChange = (event) => {
+    const handleChange = (event) => {
         const { name, value } = event.target
 
         setFormField({
@@ -41,7 +41,7 @@ const SignUpForm = () => {
             resetFormField()
         } catch (error) {
             if (error.code === 'auth/email-already-in-use') {
-                alert('Cannot use email in use')
+                alert('Cannot create user, email already in use')
             } else {
                 console.log('user creation encountered an error', error)
             }
@@ -55,25 +55,25 @@ const SignUpForm = () => {
             <form onSubmit={handleSubmit}>
                 <FormInput label='Display Name'
                            type="text"
-                           onChange={handleOnChange}
+                           onChange={handleChange}
                            name='displayName'
                            value={displayName}
                            required />
                 <FormInput label='Email'
                            type="email"
-                           onChange={handleOnChange}
+                           onChange={handleChange}
                            name='email'
                            value={email}
                            required />
                 <FormInput label='Password'
                            type="password"
-                           onChange={handleOnChange}
+                           onChange={handleChange}
                            name='password'
                            value={password}
                            required />
                 <FormInput label='Confirm Password'
                            type="password"
-                           onChange={handleOnChange}
+                           onChange={handleChange}
                            name='confirmPassword'
                            value={confirmPassword}
                            required />
