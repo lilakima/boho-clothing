@@ -20,6 +20,7 @@ const SignUpForm = () => {
     }
 
     const handleChange = (event) => {
+        console.log('test')
         const { name, value } = event.target
 
         setFormField({
@@ -29,8 +30,9 @@ const SignUpForm = () => {
     }
 
     const handleSubmit = async (event) => {
-        event.preventDefault()
+        console.log('test test')
 
+        event.preventDefault()
         if (password !== confirmPassword) {
             alert('password do not match')
             return
