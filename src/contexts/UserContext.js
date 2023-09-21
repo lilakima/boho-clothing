@@ -1,25 +1,38 @@
-import React, { createContext, useEffect, useState } from 'react'
-import { createUserDocumentFromAuth, onAuthStateChangedListener } from "../utils/firebase/firebase.utils"
+import React, { createContext, useReducer } from 'react'
 
 export const UserContext = createContext({
     currentUser: null,
     setCurrentUser: () => null
 })
 
-export const UserProvider = ({ children }) => {
-    const [currentUser, setCurrentUser] = useState(null)
-    const value = {currentUser, setCurrentUser}
+const userReducer = (state, action) => {
+    const {type, payload} = action
 
-    useEffect(() => {
-        const unsubscribe = onAuthStateChangedListener((user) => {
-            if(user) {
-                return createUserDocumentFromAuth(user)
+    switch (type) {
+        case "SET_CURRENT_USER":
+            return {
+                ...state,
+                currentUser: payload
             }
-            setCurrentUser(user)
-        })
 
-        return unsubscribe
-    }, [])
+        default:
+            throw new Error(`Unhandled type ${type} in userReducer`)
+    }
+}
+
+const INITIAL_STATE = {
+    currentUser: null
+}
+
+export const UserProvider = ({ children }) => {
+    const [state, dispatch] = useReducer(userReducer, INITIAL_STATE)
+    const {currentUser} = state
+
+
+
+    const value = {currentUser}
+
+
 
     return <UserContext.Provider value={value}>{children}</UserContext.Provider>
 }
