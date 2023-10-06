@@ -8,12 +8,10 @@ import { selectCategoriesMap } from "../../store/categories/CategoriesSelector"
 // it only renders this component if the return of the selector function you pass to it is different
 const Category = () => {
     const { category } = useParams()
-    console.log('render/re-rendering category component')
     const categoriesMap = useSelector(selectCategoriesMap)
     const [products, setProducts] = useState(categoriesMap[category])
 
     useEffect(() => {
-        console.log('effect fired calling setProducts')
         setProducts(categoriesMap[category])
     }, [category, categoriesMap])
 
